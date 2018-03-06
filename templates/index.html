@@ -9,15 +9,56 @@
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
         <link href="/static/styles.css" rel="stylesheet">
+        <link href="/static/icon.png" rel="icon">
         <meta name="viewport" content="width=device-width, initial-scale=1">
     </head>
     <body class = 'container'>
         <nav class="navbar navbar-default">
             <div class="container-fluid">
                 <div class="navbar-header">
-                    <a class="navbar-brand" href="{% url 'home' %}">Curhatpedia</a>
-                </div>                
+                    <a class="navbar-brand" href="{% url 'home' %}"><h3>CURHATPEDIA</h3></a>
+                </div>    
+                <form class="navbar-form navbar-right" action="{% url 'login' %}" method="post">
+                    <div class="input-group">
+                        <label class="control-label col-sm-1" for="usercredential">Email/Username: </label><br/>
+                        <div class="col-sm-1">
+                            <input type="text" class="form-control" placeholder="Username/Email.." name="usercredential" />
+                        </div>                        
+                    </div>
+                    <div class="input-group">
+                        <label class="control-label col-sm-1" for="password">Password: </label><br/>
+                        <div class="col-sm-1">
+                            <input type="password" class="form-control" placeholder="Password.." name="password" />
+                        </div>
+                        
+                    </div>
+                    <button type="submit" name="btnLogin" class="form-control btn btn-default">Login</button>
+                </form>            
             </div>
         </nav>
+        <div class="container-fluid">
+            <h1>Create a new account</h1>
+            It's free and always will be<br/><br/>
+            <form class="form-horizontal" action="{% url 'register' %}" method="post">
+                <div class="form-group">
+                    <div class="col-sm-2">
+                        <input type="text" name="fistname" placeholder="First name" class="form-control" autofocus/>
+                    </div>
+                    <div class="col-sm-2">
+                        <input type="text" name="surname" placeholder="Surname" class="form-control" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-sm-4">
+                        <input type="email" name="email" placeholder="Email Address" class="form-control" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-sm-4">
+                        <input type="password" name="newpassword" placeholder="New password" class="form-control" />
+                    </div>
+                </div>
+            </form>
+        </div>
     </body>
 </html>
