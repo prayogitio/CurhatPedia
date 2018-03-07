@@ -21,7 +21,7 @@
                 </div>
                 <ul class="nav navbar-nav navbar-right">
                     {% if user.is_authenticated %}
-                    <li><a href="{% url 'curhats:list' %}">Home</a></li>
+                    <li class="active"><a href="{% url 'curhats:list' %}">Home</a></li>
                     <li><a href="{% url 'curhats:list' %}">Profile</a></li>
                     <li>
                         <form action="{% url 'accounts:logout' %}" method="post" class="navbar-form">
