@@ -37,6 +37,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'curhats'
 ]
 
 MIDDLEWARE = [
@@ -85,7 +86,7 @@ DATABASES = {
 }
 
 AUTHENTICATION_BACKENDS = (
-    'curhatpedia.backends.EmailBackend',
+    'accounts.backends.EmailBackend',
 )
 
 # Password validation

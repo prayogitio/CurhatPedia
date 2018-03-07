@@ -18,12 +18,26 @@
             <div class="container-fluid">
                 <div class="navbar-header">
                     <a class="navbar-brand" href="{% url 'home' %}">Curhatpedia</a>
-                </div>    
-                <form class="navbar-form navbar-right" action="{% url 'login' %}" method="post">
-                    {% csrf_token %}
-                    {{ login_form }}
-                    <button type="submit" name="btnLogin">Login</button>
-                </form>            
+                </div>
+                <ul class="nav navbar-nav navbar-right">
+                    {% if user.is_authenticated %}
+                    <li><a href="{% url 'curhats:list' %}">Home</a></li>
+                    <li><a href="{% url 'curhats:list' %}">Profile</a></li>
+                    <li>
+                        <form action="{% url 'accounts:logout' %}" method="post" class="navbar-form">
+                            {% csrf_token %}
+                            <button class="btn btn-danger form-control" type="submit">Logout</button>
+                        </form>
+                    </li>
+                    
+                    {% else %}   
+                    <form class="navbar-form navbar-right" action="{% url 'accounts:login' %}" method="post">
+                        {% csrf_token %}
+                        {{ login_form }}
+                        <button type="submit" name="btnLogin">Login</button>
+                    </form>     
+                    {% endif %}
+                </ul>
             </div>
         </nav>
         {% block content %}
@@ -31,7 +45,7 @@
             <div class="col-lg-6">
                 <h1>Create a new account</h1>
                 It's free and always will be<br/><br/>
-                <form class="form-horizontal" action="{% url 'register' %}" method="post">
+                <form class="form-horizontal" action="{% url 'accounts:register' %}" method="post">
                     {% csrf_token %}
                     {{ regis_form.as_p }}
                     <input type="submit" value="Create Account" />                    

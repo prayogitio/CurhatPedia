@@ -1,6 +1,14 @@
 {% extends 'index.html' %}
 {% block content %}
     <div class="container-fluid">
-        <h1>Curhat Page</h1>
+        <div class="row">
+            <form method="post" action="{% url 'curhats:create' %}">
+                <h3>Hi {{ request.user.first_name }} {{ request.user.last_name }}</h3>
+                <div class="col-sm-5">
+                    {{ post_form.body }}              
+                </div>
+            <input type="submit" class="btn btn-default" value="Post"/>
+        </form> 
+        </div>
     </div>
 {% endblock %}
