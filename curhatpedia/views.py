@@ -16,7 +16,7 @@ def login_view(request):
             #log in the user
             user = form.get_user()
             login(request, user)
-            return redirect('test.html')
+            return redirect('curhats:list')
     else:
         form = AuthenticationForm()
     return render(request, 'index.html', { 'login_form':form, 'regis_form':UserCreationForm() })
