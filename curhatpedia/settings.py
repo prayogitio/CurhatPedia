@@ -84,6 +84,9 @@ DATABASES = {
     }
 }
 
+AUTHENTICATION_BACKENDS = (
+    'curhatpedia.backends.EmailBackend',
+)
 
 # Password validation
 # https://docs.djangoproject.com/en/2.0/ref/settings/#auth-password-validators
@@ -121,8 +124,9 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/2.0/howto/static-files/
 
-STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
-"""STATIC_ROOT = os.path.join((BASE_DIR), 'assets')"""
+#add these two following when upload to heroku
+'''STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'''
+'''STATIC_ROOT = os.path.join((BASE_DIR), 'assets')'''
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR, "assets"),
 ]

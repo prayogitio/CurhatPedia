@@ -1,0 +1,8 @@
+.site-form {
+    width: 100%;
+}
+.site-form input, .site-form textarea {
+    display: block;
+    border-radius: 5px;
+    padding: 10px;
+}
