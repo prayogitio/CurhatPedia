@@ -7,3 +7,10 @@ class CreatePost(forms.ModelForm):
     class Meta:
         model = models.Post
         fields = ['body']
+
+class CreateComment(forms.ModelForm):
+    body = forms.CharField(widget=forms.TextInput(attrs={'class':'form-control', 'placeholder':'Berikan komentarmu', 'maxlength':100}))
+
+    class Meta:
+        model = models.Comment
+        fields = ['body']

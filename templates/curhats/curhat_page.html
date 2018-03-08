@@ -11,6 +11,7 @@
             <input type="submit" class="btn btn-default" value="Post"/>
         </form> 
         </div>
+        <br/>
         {% for post in post_data %}
         <div class="media">
             <div class="media-left">
@@ -21,9 +22,15 @@
                 <p>
                     {{ post.body }}
                 </p>
-                <a>Reply</a> <a>Like</a>
+                <a>Show Replies <span class="badge">1</span></a>&nbsp;&nbsp;&nbsp;&nbsp;<a>Like <span class="badge">0</span></a><br/>
+                <hr>
+                <form method="post" action="{% url 'curhats:post_comment' post.id %}">
+                    {% csrf_token %}
+                    {{ comment_form.body }}
+                </form>
             </div>
         </div>
+        <br/>
         {% endfor %}
     </div>
 {% endblock %}
