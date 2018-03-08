@@ -26,7 +26,7 @@
                 </p>
                 {% for key, value in comments_count %}
                     {% if key == post.id %}
-                <a>Show Comments <span class="badge">{{ value }}</span></a>&nbsp;&nbsp;&nbsp;&nbsp;<a>Like <span class="badge">0</span></a><br/>
+                <a id="{{ post.id }}">Hide Comments</a> <span class="badge">{{ value }}</span>&nbsp;&nbsp;&nbsp;&nbsp;<a>Like <span class="badge">0</span></a><br/>
                     {% endif %}
                 {% endfor %}
                 <br/>
@@ -35,7 +35,7 @@
                     {{ comment_form.body }}
                 </form>
                 <br/>
-                <div id="comments_tray">
+                <div id="{{ post.id }}tray">
                     {% for comment in comments %}
                         {% if comment.post_id_id == post.id %}
                         <div class="media">
@@ -57,5 +57,24 @@
         <hr>
         {% endfor %}
         {% show_more %}
+        <script type="text/javascript">
+            var post = [
+                {% for post in post_data %}
+                    [{{post.id}}],
+                {% endfor %}
+            ];
+
+            $.each(post, function(i){
+                $('#'+post[i]).click(function(){
+                    if ($('#'+post[i]+'tray').is(':visible')) {
+                        $('#'+post[i]).text('Show Comments');
+                    } 
+                    if ($('#'+post[i]+'tray').is(':hidden')){000
+                        $('#'+post[i]).text('Hide Comments');
+                    }
+                    $('#'+post[i]+'tray').slideToggle(1000);
+                });
+            });
+        </script>
     </div>
 {% endblock %}
