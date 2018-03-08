@@ -1,5 +1,6 @@
 from django.shortcuts import render, redirect
-from .models import Post
+from .models import Post, Comment
+from django.http import HttpResponse
 from . import forms
 from django.contrib.auth.decorators import login_required
 
@@ -8,8 +9,9 @@ from django.contrib.auth.decorators import login_required
 def curhat_list(request):
     post_form = forms.CreatePost(request.POST)
     posts = Post.objects.all().order_by('-date')
+    comments = Comment.objects.all().order_by('-date')
     comment_form = forms.CreateComment(request.POST)
-    return render(request, 'curhats/curhat_page.html', { 'post_form':post_form, 'post_data':posts, 'comment_form':comment_form })
+    return render(request, 'curhats/curhat_page.html', { 'post_form':post_form, 'post_data':posts, 'comment_form':comment_form, 'comments':comments })
 
 @login_required(login_url="/accounts/login")
 def create_curhat(request):
@@ -21,7 +23,7 @@ def create_curhat(request):
             get_instance.save()
             return redirect('curhats:list')
 
-@login_required(login_url="/accounts/login")   
+@login_required(login_url="/accounts/login")
 def post_comment(request,id):
     if request.method == 'POST':
         form = forms.CreateComment(request.POST)

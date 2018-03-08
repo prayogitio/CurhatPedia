@@ -12,6 +12,8 @@
         </form> 
         </div>
         <br/>
+        {% load endless %}
+        {% lazy_paginate post_data %}
         {% for post in post_data %}
         <div class="media">
             <div class="media-left">
@@ -23,14 +25,33 @@
                     {{ post.body }}
                 </p>
                 <a>Show Replies <span class="badge">1</span></a>&nbsp;&nbsp;&nbsp;&nbsp;<a>Like <span class="badge">0</span></a><br/>
-                <hr>
+                <br/>
                 <form method="post" action="{% url 'curhats:post_comment' post.id %}">
                     {% csrf_token %}
                     {{ comment_form.body }}
                 </form>
+                <br/>
+                <div id="comments_tray">
+                    {% for comment in comments %}
+                        {% if comment.post_id_id == post.id %}
+                        <div class="media">
+                            <div class="media-left">
+                                <img src="/static/avatar.png" class="media-object" style="width:45px">
+                            </div>
+                            <div class="media-body">
+                                <h4 class="media-heading">{{ comment.author.first_name }} {{ comment.author.last_name }} <small><i>{{ comment.date }}</i></small></h4>
+                                <p>
+                                    {{ comment.body }}
+                                </p>
+                            </div>
+                        </div>
+                        {% endif %}
+                    {% endfor %}
+                </div>
             </div>
         </div>
-        <br/>
+        <hr>
         {% endfor %}
+        {% show_more %}
     </div>
 {% endblock %}

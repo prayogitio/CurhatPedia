@@ -25,7 +25,7 @@ def register_view(request):
             user = form.save()
             #log the user in
             login(request, user)
-            return redirect('test.html')
+            return redirect('curhats:list')
     elif request.method == 'GET':
         form = UserCreationForm()
     return render(request, 'index.html', { 'regis_form':form, 'login_form': AuthenticationForm() })
