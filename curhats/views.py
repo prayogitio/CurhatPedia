@@ -11,7 +11,11 @@ def curhat_list(request):
     posts = Post.objects.all().order_by('-date')
     comments = Comment.objects.all().order_by('-date')
     comment_form = forms.CreateComment(request.POST)
-    return render(request, 'curhats/curhat_page.html', { 'post_form':post_form, 'post_data':posts, 'comment_form':comment_form, 'comments':comments })
+    comments_count = {}
+    for post in posts:
+        c = Comment.objects.filter(post_id_id=post.id).count()
+        comments_count[post.id] = c
+    return render(request, 'curhats/curhat_page.html', { 'post_form':post_form, 'post_data':posts, 'comment_form':comment_form, 'comments':comments, 'comments_count':comments_count.items() })
 
 @login_required(login_url="/accounts/login")
 def create_curhat(request):

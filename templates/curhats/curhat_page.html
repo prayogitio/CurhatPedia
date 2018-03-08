@@ -24,7 +24,11 @@
                 <p>
                     {{ post.body }}
                 </p>
-                <a>Show Replies <span class="badge">1</span></a>&nbsp;&nbsp;&nbsp;&nbsp;<a>Like <span class="badge">0</span></a><br/>
+                {% for key, value in comments_count %}
+                    {% if key == post.id %}
+                <a>Show Comments <span class="badge">{{ value }}</span></a>&nbsp;&nbsp;&nbsp;&nbsp;<a>Like <span class="badge">0</span></a><br/>
+                    {% endif %}
+                {% endfor %}
                 <br/>
                 <form method="post" action="{% url 'curhats:post_comment' post.id %}">
                     {% csrf_token %}
