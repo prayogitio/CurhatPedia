@@ -30,7 +30,7 @@ def curhat_list(request):
 
     for post in posts:
         c = Comment.objects.filter(post_id_id=post.id).count()
-    comments_count[post.id] = c
+        comments_count[post.id] = c
      
     return render(request, 'curhats/curhat_page.html', { 'post_form':post_form, 'post_data':posts, 'comment_form':comment_form, 'comments':comments, 'comments_count':comments_count.items() })
 
