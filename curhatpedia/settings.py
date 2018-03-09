@@ -25,7 +25,7 @@ SECRET_KEY = 'r70q1+iggtqwm+(00tbyxmr@py$cm4!i-#^3@35=639j$m)fzv'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['https://curhatpedia.herokuapp.com/']
 
 
 # Application definition
