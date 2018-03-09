@@ -25,7 +25,7 @@ SECRET_KEY = 'r70q1+iggtqwm+(00tbyxmr@py$cm4!i-#^3@35=639j$m)fzv'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['https://curhatpedia.herokuapp.com/']
+ALLOWED_HOSTS = ['curhatpedia.herokuapp.com']
 
 
 # Application definition
@@ -79,11 +79,11 @@ WSGI_APPLICATION = 'curhatpedia.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'curhatpedia',
-        'USER': 'postgres',
-        'PASSWORD': 'postgres',
-        'HOST': '',
-        'PORT': ''
+        'NAME': 'dcr5btede8f11s',
+        'USER': 'zojfdhxxgpxygd',
+        'PASSWORD': '7d34d2ea269e7ec9368b63cae0ab3e62bbe825324e2911f826df5287878a9462',
+        'HOST': 'ec2-54-243-31-34.compute-1.amazonaws.com',
+        'PORT': '5432',
     }
 }
 

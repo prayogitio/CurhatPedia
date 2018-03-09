@@ -1,1 +1,1 @@
-web: gunicorn curhatpedia.wsgi
+web: gunicorn curhatpedia.wsgi:application
