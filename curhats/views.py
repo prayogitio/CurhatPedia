@@ -8,18 +8,30 @@ from django.http import JsonResponse
 import json
 from django.core import serializers
 from django.template import RequestContext
+from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 
 # Create your views here.
 @login_required(login_url="/accounts/login")
 def curhat_list(request):
     post_form = forms.CreatePost(request.POST)
-    posts = Post.objects.all().order_by('-date')
     comments = Comment.objects.all().order_by('-date')
     comment_form = forms.CreateComment(request.POST)
     comments_count = {}
+    
+    post_list = Post.objects.all().order_by('-date')
+    paginator = Paginator(post_list, 7)
+    page = request.GET.get('page')
+    try:
+        posts = paginator.page(page)
+    except PageNotAnInteger:
+        posts = paginator.page(1)
+    except EmptyPage:
+        posts = paginator.page(paginator.num_pages)
+
     for post in posts:
         c = Comment.objects.filter(post_id_id=post.id).count()
-        comments_count[post.id] = c
+    comments_count[post.id] = c
+     
     return render(request, 'curhats/curhat_page.html', { 'post_form':post_form, 'post_data':posts, 'comment_form':comment_form, 'comments':comments, 'comments_count':comments_count.items() })
 
 @login_required(login_url="/accounts/login")

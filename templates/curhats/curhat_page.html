@@ -12,8 +12,7 @@
         </form> 
         </div>
         <br/>
-        {% load endless %}
-        {% lazy_paginate post_data %}
+
         {% for post in post_data %}
         <div class="media">
             <div class="media-left">
@@ -58,7 +57,21 @@
         </div>
         <hr>
         {% endfor %}
-        {% show_more %}
+        <div class="pagination">
+            <span class="step-links">
+                {% if post_data.has_previous %}
+                    <a href="?page={{ post_data.previous_page_number }}">previous</a>
+                {% endif %}
+
+                <span class="current">
+                    Page {{ post_data.number }} of {{ post_data.paginator.num_pages }}
+                </span>
+
+                {% if post_data.has_next %}
+                    <a href="?page={{ post_data.next_page_number }}">next</a>
+                {% endif %}
+            </span>
+        </div>
         <script type="text/javascript">
             var post = [
                 {% for post in post_data %}

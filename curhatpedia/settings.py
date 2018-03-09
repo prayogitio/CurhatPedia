@@ -39,7 +39,6 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'curhats',
     'accounts',
-    'endless_pagination'
 ]
 
 MIDDLEWARE = [
@@ -128,9 +127,11 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/2.0/howto/static-files/
 
 #add these two following when upload to heroku
-STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
-STATIC_ROOT = os.path.join((BASE_DIR), 'assets')
-
+"""STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
+STATIC_ROOT = os.path.join((BASE_DIR), 'assets')"""
+STATICFILES_DIRS = [
+    os.path.join(BASE_DIR, "assets"),
+]
 STATIC_URL = '/static/'
 
 MEDIA_URL = "/media/"
