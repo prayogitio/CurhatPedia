@@ -1,0 +1,12 @@
+{% extends 'index.html' %}
+{% block content %}
+<div class="container-fluid text-center">
+    <h3>Your Profile: </h3>
+    username : {{ user.username }}<br/>
+    firstname : {{ user.first_name }}<br/>
+    lastname : {{ user.last_name }}<br/>
+    email : {{ user.email }}<br/>
+    last login : {{ user.last_login }}<br/>
+    join date : {{ user.date_joined }}
+</div>
+{% endblock %}

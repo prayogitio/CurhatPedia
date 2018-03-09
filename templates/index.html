@@ -22,7 +22,7 @@
                 <ul class="nav navbar-nav navbar-right">
                     {% if user.is_authenticated %}
                     <li class="active"><a href="{% url 'curhats:list' %}">Home</a></li>
-                    <li><a href="{% url 'curhats:list' %}">Profile</a></li>
+                    <li><a href="{% url 'curhats:profile' %}">Profile</a></li>
                     <li>
                         <form action="{% url 'accounts:logout' %}" method="post" class="navbar-form">
                             {% csrf_token %}
@@ -54,14 +54,54 @@
             <div class="col-lg-6">
                 <br/>
                 <h3>Welcome to <b>Curhatpedia</b></h3>
-                <p>Share your stories here</p>
+                <p>Dig in and tell others your stories!</p>
+                <img id="gambar" src="/static/ss.png" width=80% height=80%>
             </div>            
         </div>
         {% endblock %}
+        
     </body><br/>
+    <script type="text/javascript">
+        ;(function($){
+    
+            /**
+            * Store scroll position for and set it after reload
+            *
+            * @return {boolean} [loacalStorage is available]
+            */
+            $.fn.scrollPosReaload = function(){
+                if (localStorage) {
+                    var posReader = localStorage["posStorage"];
+                    if (posReader) {
+                        $(window).scrollTop(posReader);
+                        localStorage.removeItem("posStorage");
+                    }
+                    $(this).click(function(e) {
+                        localStorage["posStorage"] = $(window).scrollTop();
+                    });
+        
+                    return true;
+                }
+        
+                return false;
+            }
+            
+            /* ================================================== */
+        
+            $(document).ready(function() {
+                // Feel free to set it for any element who trigger the reload
+                $('body').scrollPosReaload();
+                var gambar_timer = setInterval(an_gambar, 3000);
+                function an_gambar() {
+                    $('#gambar').fadeToggle(1000);
+                }
+            });
+        
+        }(jQuery)); 
+</script>
     <footer>
         <div class="footer navbar-bottom text-center bg-info">
-            <b>2018 Open Source: Curhatpedia by Tio_95</b>
+            <b>2018 Open Source: Curhatpedia by Prayogi Tio</b>
         </div>  
     </footer>
 </html>

@@ -1,8 +1,13 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, render_to_response
 from .models import Post, Comment
 from django.http import HttpResponse
 from . import forms
 from django.contrib.auth.decorators import login_required
+from django.db.models import F
+from django.http import JsonResponse
+import json
+from django.core import serializers
+from django.template import RequestContext
 
 # Create your views here.
 @login_required(login_url="/accounts/login")
@@ -34,7 +39,21 @@ def post_comment(request,id):
         if form.is_valid():
             get_instance = form.save(commit=False)
             get_instance.author = request.user
-            post_id = Post.objects.get(id=id)
-            get_instance.post_id = post_id
+            get_instance.post_id_id = id
             get_instance.save()
             return redirect('curhats:list')
+    
+@login_required(login_url="/accounts/login")
+def like_post(request):
+    if request.is_ajax():
+        post_id = request.POST.get('post_id[]')
+        print(post_id)
+        msg = {
+            'is_updated': Post.objects.filter(id=post_id).update(likes=F('likes')+1),
+            'result_like': Post.objects.get(id=post_id).likes
+        }
+        return JsonResponse(msg)
+
+@login_required(login_url="/accounts/login")
+def profile_view(request):
+    return render (request, 'curhats/profile.html', { 'user':request.user })
