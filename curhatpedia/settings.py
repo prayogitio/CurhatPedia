@@ -79,10 +79,10 @@ WSGI_APPLICATION = 'curhatpedia.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'dcr5btede8f11s',
-        'USER': 'zojfdhxxgpxygd',
-        'PASSWORD': '7d34d2ea269e7ec9368b63cae0ab3e62bbe825324e2911f826df5287878a9462',
-        'HOST': 'ec2-54-243-31-34.compute-1.amazonaws.com',
+        'NAME': 'daa6hp7at0gf69',
+        'USER': 'eostwcmubjndhg',
+        'PASSWORD': '390b013e4827c483d9e7c9ccc2f2f9463d828cd79fe50466a0443323e9584838',
+        'HOST': 'ec2-54-221-207-184.compute-1.amazonaws.com',
         'PORT': '5432',
     }
 }
