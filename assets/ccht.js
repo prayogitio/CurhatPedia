@@ -15,7 +15,7 @@ $(function(){
     $('#msg-list-div').on('scroll', function(){
         scrolling = true;
     });
-    refreshTimer = setInterval(getMessages, 100);
+    refreshTimer = setInterval(getMessages, 10000);
 });
 
 $(document).ready(function() {
