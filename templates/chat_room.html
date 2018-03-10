@@ -1,0 +1,62 @@
+{% extends 'index.html' %}
+
+{% block content %}
+<div class="container">
+    <div class="col-md-5">
+        <span id="to" hidden='hidden'>{{ to.id }}</span>
+        <div id="chat-body" class="panel panel-default">
+            <div class="panel-heading">Chat with {{ to }}</div>
+            <div id="msg-list-div" class="panel-body">
+                <ul id="msg-list" class="list-group">
+                    {% for chat in chats %}
+                        {% if chat.user_one == request.user %}
+                            <li class="text-right list-group-item">{{ chat.message }}<br/><small><i>{{ chat.date_created }}</i></small></li>
+                        {% else %}
+                            <li class="text-left list-group-item">{{ chat.message }}<br/><small><i>{{ chat.date_created }}</i></small></li>
+                        {% endif %}
+                    {% empty %}
+                        <li class="text-center list-group-item">No messages yet</li>
+                    {% endfor %}
+                    <script>
+                        var chatList = document.getElementById('msg-list-div');
+                        chatList.scrollTop = chatList.scrollHeight;
+                    </script>
+                </ul>
+            </div>
+        </div>
+    
+        <form id="chat-form" method="post" action="{% url 'chats:send' %}">
+            <div id="chat-bottom" class="input-group">
+                <input type="text" id="chat-msg" name="chat-msg" autofocus placeholder="Enter your message here" class="form-control"/>
+                <span class="input-group-btn">
+                    <input class="btn btn-default" id="send" type="submit" value="Send"/>
+                </span>
+            </div>
+        </form>
+    </div>
+</div>
+<script>
+    $('#chat-form').on('submit', function(event){
+        event.preventDefault();
+        $.ajax({
+            url : "{% url 'chats:send' %}",
+            type : 'POST',
+            data : { 
+                msgbox : $('#chat-msg').val(),
+                to_id: "{{ to.id }}",
+            },
+
+            success : function(json){
+                console.log(json);
+                $('#chat-msg').val('');
+                $('#msg-list').append('<li class="text-right list-group-item">' + json.msg + '</li>');
+                var chatlist = document.getElementById('msg-list-div');
+                chatlist.scrollTop = chatlist.scrollHeight;
+            }
+        });
+    });
+</script>
+
+
+
+{% endblock %}

@@ -25,7 +25,7 @@ SECRET_KEY = 'r70q1+iggtqwm+(00tbyxmr@py$cm4!i-#^3@35=639j$m)fzv'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['curhatpedia.herokuapp.com']
+ALLOWED_HOSTS = []
 
 
 # Application definition
@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'curhats',
     'accounts',
+    'chats',
 ]
 
 MIDDLEWARE = [
@@ -78,11 +79,11 @@ WSGI_APPLICATION = 'curhatpedia.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'daa6hp7at0gf69',
-        'USER': 'eostwcmubjndhg',
-        'PASSWORD': '390b013e4827c483d9e7c9ccc2f2f9463d828cd79fe50466a0443323e9584838',
-        'HOST': 'ec2-54-221-207-184.compute-1.amazonaws.com',
-        'PORT': '5432',
+        'NAME': 'curhatpedia',
+        'USER': 'postgres',
+        'PASSWORD': 'postgres',
+        'HOST': '',
+        'PORT': '',
     }
 }
 
@@ -130,6 +131,7 @@ USE_TZ = True
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 STATIC_ROOT = os.path.join((BASE_DIR), 'assets')
 STATIC_URL = '/static/'
+'''STATICFILES_DIRS = [os.path.join((BASE_DIR), 'assets'),]'''
 
 MEDIA_URL = "/media/"
 

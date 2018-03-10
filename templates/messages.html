@@ -1,0 +1,9 @@
+{% for chat in chats %}
+    {% if chat.user_one == request.user %}
+        <li class="text-right list-group-item">{{ chat.message }}<br/><small><i>{{ chat.date_created }}</i></small></li>
+    {% else %}
+        <li class="text-left list-group-item">{{ chat.message }}<br/><small><i>{{ chat.date_created }}</i></small></li>
+    {% endif %}
+{% empty %}
+    <li class="text-center list-group-item">No messages yet</li>
+{% endfor %} 

@@ -1,0 +1,29 @@
+{% extends 'index.html' %}
+{% block content %}
+    <h1>Select a friend to chat:</h1>
+    <form id="live-search" action='' method="post">
+        <fieldset>
+            <input type="text" class="text-input" id="filter" value="" placeholder="Search your friend" autofocus/>
+        </fieldset>
+    </form>
+    <ul class="list-group">
+        {% for friend in friends %}
+            <a href="{% url 'chats:chatroom' friend.id %}" class="list-group-item">{{ friend.username }}</a>
+        {% endfor %}
+    </ul>
+
+    <script>
+    $(document).ready(function(){
+        $("#filter").keyup(function(){
+            var filter = $(this).val();
+            $("a").each(function(){
+                if ($(this).text().search(new RegExp(filter, "i")) < 0) {
+                    $(this).fadeOut();
+                } else {
+                    $(this).show();
+                }
+            });
+        });
+    });
+    </script>
+{% endblock %}
